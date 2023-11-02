@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: grey;
+  /* background-color: grey; */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -70,6 +70,12 @@ h1 {
 
 .small-screen{
   display: none;
+}
+
+/* Friends.jsx */
+.chat-user{
+  display: flex;
+  justify-content: space-between;
 }
 @media(max-width:800px){
   .nav-section{
