@@ -77,12 +77,24 @@ h1 {
   display: flex;
   justify-content: space-between;
 }
+
+/* AUTH */
+.auth{
+  /* display: flex; */
+  padding: 10px;
+  width: 70%;
+  margin: 0 auto;
+  margin-top: 50px;
+}
 @media(max-width:800px){
   .nav-section{
     display: block;
   }
   .message-box{
     width: 56%;
+  }
+  .auth{
+    width: 100%;
   }
   
 }
