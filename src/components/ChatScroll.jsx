@@ -9,37 +9,37 @@ export const ChatScroll =()=>{
                     <tr>
                     <td>
                     <div className="chat-user-name">
-                        <h6><i class="bi bi-person-circle"></i> Glory <i class="bi bi-dot"></i></h6>
+                        <h6><i className="bi bi-person-circle"></i> Glory <i className="bi bi-dot"></i></h6>
                         <div className="status"><small>Online</small></div>
                     </div>
                     </td>
                     <td>
                     <div className="chat-user-name">
-                        <h6><i class="bi bi-person-circle"></i> Glory <i class="bi bi-dot"></i></h6>
+                        <h6><i className="bi bi-person-circle"></i> Glory <i className="bi bi-dot"></i></h6>
                         <div className="status"><small>Online</small></div>
                     </div>
                     </td>
                     <td>
                     <div className="chat-user-name">
-                        <h6><i class="bi bi-person-circle"></i> Glory <i class="bi bi-dot"></i></h6>
+                        <h6><i className="bi bi-person-circle"></i> Glory <i className="bi bi-dot"></i></h6>
                         <div className="status"><small>Online</small></div>
                     </div>
                     </td>
                     <td>
                     <div className="chat-user-name">
-                        <h6><i class="bi bi-person-circle"></i> Glory <i class="bi bi-dot"></i></h6>
+                        <h6><i className="bi bi-person-circle"></i> Glory <i className="bi bi-dot"></i></h6>
                         <div className="status"><small>Online</small></div>
                     </div>
                     </td>
                     <td>
                     <div className="chat-user-name">
-                        <h6><i class="bi bi-person-circle"></i> Glory <i class="bi bi-dot"></i></h6>
+                        <h6><i className="bi bi-person-circle"></i> Glory <i className="bi bi-dot"></i></h6>
                         <div className="status"><small>Online</small></div>
                     </div>
                     </td>
                     <td>
                     <div className="chat-user-name">
-                        <h6><i class="bi bi-person-circle"></i> Glory <i class="bi bi-dot"></i></h6>
+                        <h6><i className="bi bi-person-circle"></i> Glory <i className="bi bi-dot"></i></h6>
                         <div className="status"><small>Online</small></div>
                     </div>
                     </td>
