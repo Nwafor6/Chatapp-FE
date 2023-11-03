@@ -106,3 +106,7 @@ h1 {
     display: none;
   }
 }
+
+.success_msg, .error_msg{
+  display: none;
+}
