@@ -1,7 +1,43 @@
 import NavBar from "./Nav"
-
+import { BASE_URL } from "./appConfig"
+import { Link, useNavigate } from "react-router-dom"
+import { useEffect, useState } from "react"
 
 export const AddFriends =()=>{
+    const [people, setPeople]=useState([])
+    async function fetchUsers(){
+        const resp= await fetch(`${BASE_URL}/all-users`) 
+        const data= await resp.json();
+        if (resp.ok){
+            console.log(data)
+            setPeople(data)
+        }else{
+            console.log(data, "error")
+        }
+    }
+    async function handleAddFriend(userId){
+        console.log(userId, "user_id")
+        const resp= await fetch(`${BASE_URL}/add-friend`,{
+            method:"POST",
+            headers:{
+                "Content-Type" : "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("user_data")}`
+            },
+            body: JSON.stringify({friendID:`${userId}`}),
+        }) 
+        const data= await resp.json();
+        if (resp.ok){
+            console.log(data)
+            // setPeople(data)
+            alert(data.detail)
+        }else{
+            console.log(data, "error")
+            alert(data.detail)
+        }
+    }
+    useEffect(()=>{
+        fetchUsers();
+    },[])
     return (
         <div className="main-body">
             {<NavBar/>}
@@ -13,24 +49,20 @@ export const AddFriends =()=>{
                 </div>
             </div>
             <div className="chat-list mt-5 ">
-                <div className="chat-user">
-                    <div className="user">
-                        <h6><i className="bi bi-person-circle"></i> Glory <i className="bi bi-dot"></i></h6>
-                        <div className="status"><small>Online</small></div>
-                    </div>
-                    <div className="add-btn">
-                        <button className="btn btn-primary"><i className="bi bi-plus-square"></i></button>
-                    </div>
-                </div><hr />
-                <div className="chat-user">
-                    <div className="user">
-                        <h6><i className="bi bi-person-circle"></i> Glory <i className="bi bi-dot"></i></h6>
-                        <div className="status"><small>Online</small></div>
-                    </div>
-                    <div className="add-btn">
-                        <button className="btn btn-primary"><i className="bi bi-plus-square"></i></button>
-                    </div>
-                </div><hr />
+                {people.map(person=>{
+                    return (
+                        <div key={person._id}>
+                            <div className="chat-user">
+                                <div className="user" >
+                                    <h6><i className="bi bi-person-circle"></i> {person.username} <i className="bi bi-dot"></i></h6>
+                                </div>
+                                <div className="add-btn">
+                                    <button className="btn btn-primary" onClick={()=>(handleAddFriend(person._id))}><i className="bi bi-plus-square"></i></button>
+                                </div>
+                            </div><hr />
+                        </div>
+                    )
+                })}
             </div>
         </div>
     )

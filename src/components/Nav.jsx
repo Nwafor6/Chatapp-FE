@@ -14,7 +14,7 @@ const NavBar= ()=>{
                 </div> */}
             </div>
             <div className="right-nav-section">
-                <div className="people"><Link to='/add-friends' ><i class="bi bi-people-fill"></i></Link></div>
+                <div className="people"><Link to='/add-friends' ><i className="bi bi-people-fill"></i></Link></div>
                 <div className="notification"><i className="bi bi-bell"></i></div>
                 <div className="message"><Link to="/chats"><i className="bi bi-chat-square-dots"></i></Link></div>
             </div>
