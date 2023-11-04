@@ -1,7 +1,9 @@
 import { Link, useNavigate } from "react-router-dom"
 import { BASE_URL } from "../appConfig"
 import { useState, useEffect } from "react"
+import { socket } from "../TestSocket"
 export const Login =()=>{
+    console.log(socket, "socket")
     const [response_msg, setresponse_msg]=useState("");
     const navigate = useNavigate();
     const [UserDataJson, setUserDataJson] = useState(null);
@@ -27,6 +29,8 @@ export const Login =()=>{
             localStorage.setItem("user_data", data.token)
             // document.querySelector("#sbtBtn").style.display="block"
             // document.querySelector("#resbtn").style.display="none"
+            // Send user id to socet
+            socket.emit("authenticate", data.user._id);
             const user={
                 email:data.user.email,
                 username:data.user.username,

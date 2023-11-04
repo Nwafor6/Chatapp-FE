@@ -5,6 +5,7 @@ import Chat from './components/chat';
 import { AddFriends } from './components/AddFriends';
 import { Login } from './components/Auths/Login';
 import { Signup } from './components/Auths/Signup';
+import { socket } from './components/TestSocket';
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
           <Route path='/add-friends' element={<AddFriends/>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/signup' element={<Signup/>}/>
+          {/* <Route path='/socket' element={<socket/>}/> */}
         </Routes>
       </Router>
     </>

@@ -53,9 +53,9 @@ h1 {
   width: 100%;
   /* gap: 0.2px; */
 }
-.body-section-for-chats{
-  height: 50vh;
-}
+/* .body-section-for-chats{
+  height: 100vh;
+} */
 .messaging-section{
   display: flex;
   justify-content: space-between;
@@ -98,7 +98,7 @@ h1 {
   }
   
 }
-@media(max-width:770px){
+@media(max-width:760px){
   .small-screen{
     display: block;
   }
@@ -109,4 +109,16 @@ h1 {
 
 .success_msg, .error_msg{
   display: none;
+}
+
+/* style the messages itself */
+#friends-message{
+  background-color: bisque;
+  padding: 5px;
+  border-radius: 20%;
+}
+#personal-message{
+  background-color: bisque;
+  padding: 5px;
+  border-radius: 20%
 }
