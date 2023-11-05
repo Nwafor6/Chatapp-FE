@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Chat from './components/chat';
+import Chat from './components/Chat';
 import { AddFriends } from './components/AddFriends';
 import { Login } from './components/Auths/Login';
 import { Signup } from './components/Auths/Signup';
