@@ -4,9 +4,15 @@ import { Link, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 
 export const AddFriends =()=>{
+    const navigate =useNavigate()
     const [people, setPeople]=useState([])
     async function fetchUsers(){
-        const resp= await fetch(`${BASE_URL}/all-users`) 
+        const resp= await fetch(`${BASE_URL}/all-users`,{
+            headers:{
+                // "Content-Type" : "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("user_data")}`
+            },
+        }) 
         const data= await resp.json();
         if (resp.ok){
             console.log(data)
@@ -35,6 +41,13 @@ export const AddFriends =()=>{
             alert(data.detail)
         }
     }
+    useEffect(()=>{
+        const user=JSON.parse(localStorage.getItem("user"))
+        if (!user){
+            navigate("/login")
+        }
+        
+    },[])
     useEffect(()=>{
         fetchUsers();
     },[])

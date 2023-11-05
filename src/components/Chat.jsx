@@ -1,12 +1,14 @@
 import React, {useState, useEffect, useRef } from "react"
+import { useNavigate } from "react-router-dom"
 import { BASE_URL } from "./appConfig"
 import NavBar from "./Nav"
 import { ChatList } from "./ChatList"
 import { ChatScroll } from "./ChatScroll"
-import { socket } from "./TestSocket"
+import { socket } from "./appConfig"
 
 
 const Chat =()=>{
+    const navigate =useNavigate()
     const scroll = useRef();
     const [friends, setFriends]=useState([]);
     const[friendName, sefFriendName]=useState("")
@@ -14,6 +16,7 @@ const Chat =()=>{
     const [messages, setMessages]=useState([]);
     const[text, setText]= useState("")
     const[userId, setUserId]=useState("")
+    const user=JSON.parse(localStorage.getItem("user"))
     async function fetchFriends(){
         const resp= await fetch(`${BASE_URL}/friends`,{
             headers:{
@@ -33,6 +36,7 @@ const Chat =()=>{
         console.log(`User ${friendID} ${username} clicked!`);
         sefFriendName(username)
         sefFriendId(friendID)
+        setMessages([])
         handleGetMessages(friendID)
         // Implement your custom logic here
     };
@@ -79,17 +83,16 @@ const Chat =()=>{
     }
     useEffect(()=>{
         const user=JSON.parse(localStorage.getItem("user"))
-        console.log(user.ud, "Heloo word")
-        setUserId(user.id)
-        fetchFriends();
+        if (!user){
+            navigate("/login")
+        }else{
+            console.log(user.id, "Heloo word")
+            setUserId(user.id)
+            fetchFriends();
+        }
+        
+        
     },[])
-    // Check when new message comes from the socket and show to client at real
-    // socket.on("private message", ({ data }) => {
-    //     console.log(data, "from socket")
-    //     const prevMessage=[...messages, data]
-    //     setMessages(prevMessage)
-    //     console.log(data, "new message")
-    // });
     useEffect(() => {
         socket.on("private message", ({ data }) => {
             console.log(data, "from socket");
@@ -101,9 +104,6 @@ const Chat =()=>{
 
     }, [messages]); // Ensure to include dependencies, if any, for useEffect
     
-    // useEffect(()=>{
-    //     scroll.current ? scrollIntoView({behaviour:"smooth"})
-    // },[messages])
     return (
         <>
             <div className="main-body">
@@ -125,15 +125,29 @@ const Chat =()=>{
                                         <div>
                                             <div className="personal-message" style={{float:"right"}}><span id="personal-message">{message.text}</span></div> <br/>
                                         </div>
-                                        
-                                        
                                     )}   
                                 </div>
                             ))}
                             
                         </div>
                         <div ref={scroll} >
-                            <form onSubmit={handleSendMessages}>
+                        {messages.length === 0 ? (
+                                <div>Start a new chat</div>
+                            ) : (
+                                <form onSubmit={handleSendMessages}>
+                                    <div className="messaging-section ">
+                                        <div className="add-photo"><i className="bi bi-plus-square"></i></div>
+                                        <div className="message-box">
+                                            <div className="input-group mb-3">
+                                                <input type="text" className="form-control" placeholder="Your message" name="text" value={text} onChange={(e) => { setText(e.target.value) }} />
+                                            </div>
+                                        </div>
+                                        <div className="message-emoji"><i className="bi bi-emoji-smile"></i></div>
+                                        <div className="send-button"><button type="submit" className="btn btn-primary border-0">Send</button></div>
+                                    </div>
+                                </form>
+                            )}
+                            {/* <form onSubmit={handleSendMessages}>
                                 <div className="messaging-section ">
                                     <div className="add-photo"><i className="bi bi-plus-square"></i></div>
                                     <div className="message-box">
@@ -144,7 +158,7 @@ const Chat =()=>{
                                     <div className="message-emoji"><i className="bi bi-emoji-smile" ></i></div>
                                     <div className="send-button"><button type="submit" className="btn btn-primary border-0">Send</button></div>
                                 </div>
-                            </form>
+                            </form> */}
                         </div>
                     </div>
                 </div>

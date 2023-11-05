@@ -5,7 +5,7 @@ import Chat from './components/chat';
 import { AddFriends } from './components/AddFriends';
 import { Login } from './components/Auths/Login';
 import { Signup } from './components/Auths/Signup';
-import { socket } from './components/TestSocket';
+// import { socket } from './components/TestSocket';
 
 function App() {
 

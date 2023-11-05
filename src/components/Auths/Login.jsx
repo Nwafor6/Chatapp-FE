@@ -1,9 +1,10 @@
 import { Link, useNavigate } from "react-router-dom"
 import { BASE_URL } from "../appConfig"
 import { useState, useEffect } from "react"
-import { socket } from "../TestSocket"
+import { socket } from "../appConfig"
+// import { socket } from "../TestSocket"
 export const Login =()=>{
-    console.log(socket, "socket")
+    // console.log(socket, "socket")
     const [response_msg, setresponse_msg]=useState("");
     const navigate = useNavigate();
     const [UserDataJson, setUserDataJson] = useState(null);
