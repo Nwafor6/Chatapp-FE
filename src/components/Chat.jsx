@@ -34,6 +34,7 @@ const Chat =()=>{
     }
     const getUserByClick = (friendID, username) => {
         console.log(`User ${friendID} ${username} clicked!`);
+        document.querySelector("#sendMessage").style.display ="block"
         sefFriendName(username)
         sefFriendId(friendID)
         setMessages([])
@@ -117,37 +118,25 @@ const Chat =()=>{
                     <div className="chat-right-bar4-messaging col-md-10 col-sm-12 shadow-sm">
                         <div className="top-section mt-3"><i className="bi bi-person-circle"></i> {friendName}</div><hr />
                         <div className="body-section-for-chats">
-                            {messages.map(message=>(
-                                <div className="chat-item mb-5" key={message._id}>
-                                    {message.senderId != userId ? (
+                            {messages.length === 0 ? (
+                                    <div>Start a new chat</div>
+                            ) : (
+                                messages.map(message => (
+                                    <div className="chat-item mb-5" key={message._id}>
+                                        {message.senderId !== userId ?  (
                                         <div className="friends-message"><span id="friends-message">{message.text}</span></div>
                                     ):(
                                         <div>
                                             <div className="personal-message" style={{float:"right"}}><span id="personal-message">{message.text}</span></div> <br/>
                                         </div>
-                                    )}   
-                                </div>
-                            ))}
+                                    )}
+                                    </div>
+                                ))
+                            )}
                             
                         </div>
-                        <div ref={scroll} >
-                        {messages.length === 0 ? (
-                                <div>Start a new chat</div>
-                            ) : (
-                                <form onSubmit={handleSendMessages}>
-                                    <div className="messaging-section ">
-                                        <div className="add-photo"><i className="bi bi-plus-square"></i></div>
-                                        <div className="message-box">
-                                            <div className="input-group mb-3">
-                                                <input type="text" className="form-control" placeholder="Your message" name="text" value={text} onChange={(e) => { setText(e.target.value) }} />
-                                            </div>
-                                        </div>
-                                        <div className="message-emoji"><i className="bi bi-emoji-smile"></i></div>
-                                        <div className="send-button"><button type="submit" className="btn btn-primary border-0">Send</button></div>
-                                    </div>
-                                </form>
-                            )}
-                            {/* <form onSubmit={handleSendMessages}>
+                        <div ref={scroll}>
+                            <form onSubmit={handleSendMessages} style={{display:"none"}} id="sendMessage">
                                 <div className="messaging-section ">
                                     <div className="add-photo"><i className="bi bi-plus-square"></i></div>
                                     <div className="message-box">
@@ -158,7 +147,7 @@ const Chat =()=>{
                                     <div className="message-emoji"><i className="bi bi-emoji-smile" ></i></div>
                                     <div className="send-button"><button type="submit" className="btn btn-primary border-0">Send</button></div>
                                 </div>
-                            </form> */}
+                            </form>
                         </div>
                     </div>
                 </div>
